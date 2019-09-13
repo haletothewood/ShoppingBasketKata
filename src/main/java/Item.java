@@ -1,8 +1,23 @@
 public class Item {
-    private String productId;
+    private final String id;
+    private String title;
+    private final int cost;
 
-    public Item(String productId) {
+    public Item(String id, String title, int cost) {
+        this.id = id;
+        this.title = title;
+        this.cost = cost;
+    }
 
-        this.productId = productId;
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

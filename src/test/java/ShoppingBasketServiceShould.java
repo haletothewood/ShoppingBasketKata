@@ -13,19 +13,19 @@ class ShoppingBasketServiceShould {
         ItemProvider itemProvider = Mockito.mock(ItemProvider.class);
         SimpleShoppingBasketService service = new SimpleShoppingBasketService(shoppingBasketProvider, itemProvider);
         String userId = "1";
-        String itemId = "1";
         int quantity = 1;
-        Item item = new Item(itemId);
+        Item item = createTestItem();
 
         when(shoppingBasketProvider.getOrCreate(userId)).thenReturn(shoppingBasket);
-        when(itemProvider.get(itemId)).thenReturn(item);
+        when(itemProvider.get(item.getId())).thenReturn(item);
 
-        service.addItem(userId, itemId, quantity);
+        service.addItem(userId, item.getId(), quantity);
 
         verify(shoppingBasketProvider).getOrCreate(userId);
-        verify(itemProvider).get(itemId);
+        verify(itemProvider).get(item.getId());
         verify(shoppingBasket).addItem(item);
     }
+
 
     @Test
     void use_the_same_basket_for_each_user() {
@@ -40,5 +40,12 @@ class ShoppingBasketServiceShould {
         service.basketFor(userId);
 
         verify(shoppingBasketProvider).getOrCreate(userId);
+    }
+
+    private Item createTestItem() {
+        String id = "1";
+        String title = "Breaking Bad";
+        int cost = 7;
+        return new Item(id, title, cost);
     }
 }

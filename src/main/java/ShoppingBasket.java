@@ -1,11 +1,14 @@
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class ShoppingBasket {
     private String userId;
+    private LocalDate creationDate;
     private Item item;
 
-    public ShoppingBasket(String userId) {
+    public ShoppingBasket(String userId, LocalDate creationDate) {
         this.userId = userId;
+        this.creationDate = creationDate;
     }
 
     public void addItem(Item item) {
@@ -18,11 +21,12 @@ public class ShoppingBasket {
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingBasket that = (ShoppingBasket) o;
         return Objects.equals(userId, that.userId) &&
+                Objects.equals(creationDate, that.creationDate) &&
                 Objects.equals(item, that.item);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, item);
+        return Objects.hash(userId, creationDate, item);
     }
 }
