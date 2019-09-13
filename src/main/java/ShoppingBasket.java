@@ -15,6 +15,10 @@ public class ShoppingBasket {
         this.item = item;
     }
 
+    String getUserId() {
+        return userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
