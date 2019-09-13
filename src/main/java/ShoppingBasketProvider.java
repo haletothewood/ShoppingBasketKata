@@ -7,6 +7,7 @@ public class ShoppingBasketProvider {
     }
 
     public ShoppingBasket getOrCreate(String userId) {
-        return null;
+        ShoppingBasket basket = shoppingBasketRepository.get(userId);
+        return basket != null ? basket : new ShoppingBasket(userId);
     }
 }
