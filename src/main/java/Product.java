@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Product {
     private final String id;
     private String title;
@@ -19,5 +21,29 @@ public class Product {
 
     public int getCost() {
         return cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return cost == product.cost &&
+                Objects.equals(id, product.id) &&
+                Objects.equals(title, product.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, cost);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }

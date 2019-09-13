@@ -15,7 +15,6 @@ public class ItemProviderShould {
 
         when(productRepository.get(productId)).thenReturn(product);
 
-
         assertThat(itemProvider.create(productId, quantity)).isEqualTo(new Item(product, quantity));
     }
 }

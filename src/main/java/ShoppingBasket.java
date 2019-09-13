@@ -33,4 +33,13 @@ public class ShoppingBasket {
     public int hashCode() {
         return Objects.hash(userId, creationDate, item);
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingBasket{" +
+                "userId='" + userId + '\'' +
+                ", creationDate=" + creationDate +
+                ", item=" + item +
+                '}';
+    }
 }

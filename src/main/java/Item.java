@@ -22,4 +22,12 @@ public class Item {
     public int hashCode() {
         return Objects.hash(product, quantity);
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
