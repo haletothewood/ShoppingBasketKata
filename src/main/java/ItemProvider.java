@@ -1,5 +1,5 @@
-public class ProductProvider {
-    public Product get(String productId) {
+public class ItemProvider {
+    public Item get(String productId) {
         return null;
     }
 }

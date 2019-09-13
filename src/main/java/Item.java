@@ -1,7 +1,7 @@
-public class Product {
+public class Item {
     private String productId;
 
-    public Product(String productId) {
+    public Item(String productId) {
 
         this.productId = productId;
     }
