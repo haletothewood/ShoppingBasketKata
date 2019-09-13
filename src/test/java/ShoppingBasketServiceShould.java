@@ -14,15 +14,15 @@ class ShoppingBasketServiceShould {
         SimpleShoppingBasketService service = new SimpleShoppingBasketService(shoppingBasketProvider, itemProvider);
         String userId = "1";
         int quantity = 1;
-        Item item = createTestItem();
+        Product product = createTestProduct();
 
         when(shoppingBasketProvider.getOrCreate(userId)).thenReturn(shoppingBasket);
-        when(itemProvider.get(item.getId())).thenReturn(item);
+        when(itemProvider.get(product.getId())).thenReturn(item);
 
-        service.addItem(userId, item.getId(), quantity);
+        service.addItem(userId, product.getId(), quantity);
 
         verify(shoppingBasketProvider).getOrCreate(userId);
-        verify(itemProvider).get(item.getId());
+        verify(itemProvider).get(product.getId());
         verify(shoppingBasket).addItem(item);
     }
 
@@ -42,10 +42,10 @@ class ShoppingBasketServiceShould {
         verify(shoppingBasketProvider).getOrCreate(userId);
     }
 
-    private Item createTestItem() {
+    private Product createTestProduct() {
         String id = "1";
         String title = "Breaking Bad";
         int cost = 7;
-        return new Item(id, title, cost);
+        return new Product(id, title, cost);
     }
 }

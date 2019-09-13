@@ -19,7 +19,7 @@ class ShoppingBasketRepositoryShould {
         String userId = "1";
         LocalDate creationDate = LocalDate.of(1983, 1, 26);
         ShoppingBasket shoppingBasket = new ShoppingBasket(userId, creationDate);
-        shoppingBasket.addItem(new Item("20110", "Breaking Bad", 7));
+        shoppingBasket.addItem(new Product("20110", "Breaking Bad", 7)); //new Item()
 
         shoppingBasketRepository.save(shoppingBasket);
 

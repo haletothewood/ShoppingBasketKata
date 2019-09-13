@@ -35,8 +35,8 @@ public class ShoppingBasketProviderShould {
         String userId = "1";
         LocalDate creationDate = LocalDate.of(1983, 1, 26);
         ShoppingBasket expected = new ShoppingBasket(userId, creationDate);
-        Item dummyItem = createTestItem();
-        expected.addItem(dummyItem);
+        Product dummyProduct = createTestItem();
+        expected.addItem(dummyProduct); // dummyItem
 
         when(shoppingBasketRepository.get(userId)).thenReturn(expected);
 
@@ -48,18 +48,18 @@ public class ShoppingBasketProviderShould {
         String userId = "1";
         LocalDate creationDate = LocalDate.of(1983, 1, 26);
         ShoppingBasket basket = new ShoppingBasket(userId, creationDate);
-        Item dummyItem = createTestItem();
-        basket.addItem(dummyItem);
+        Product dummyProduct = createTestItem();
+        basket.addItem(dummyProduct); //dummyItem
 
         shoppingBasketProvider.save(basket);
 
         verify(shoppingBasketRepository).save(basket);
     }
 
-    private Item createTestItem() {
+    private Product createTestItem() {
         String title = "Breaking Bad";
         int cost = 7;
         String id = "20110";
-        return new Item(id, title, cost);
+        return new Product(id, title, cost);
     }
 }
