@@ -8,10 +8,10 @@ public class SimpleShoppingBasketService implements ShoppingBasketService {
     }
 
     @Override
-    public void addItem(String userId, String itemId, int quantity) {
+    public void addItem(String userId, String productId, int quantity) {
         ShoppingBasket basket = shoppingBasketProvider.getOrCreate(userId);
-        Product product = itemProvider.get(itemId);
-        basket.addItem(product);
+        Item item = itemProvider.create(productId, quantity);
+        basket.addItem(item);
         shoppingBasketProvider.save(basket);
     }
 

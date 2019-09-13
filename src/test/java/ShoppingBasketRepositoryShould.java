@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 class ShoppingBasketRepositoryShould {
     @Test
@@ -19,7 +20,9 @@ class ShoppingBasketRepositoryShould {
         String userId = "1";
         LocalDate creationDate = LocalDate.of(1983, 1, 26);
         ShoppingBasket shoppingBasket = new ShoppingBasket(userId, creationDate);
-        shoppingBasket.addItem(new Product("20110", "Breaking Bad", 7)); //new Item()
+        Product product = mock(Product.class);
+        int quantity = 1;
+        shoppingBasket.addItem(new Item(product, quantity));
 
         shoppingBasketRepository.save(shoppingBasket);
 

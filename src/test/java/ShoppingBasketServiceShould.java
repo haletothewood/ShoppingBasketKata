@@ -1,38 +1,40 @@
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class ShoppingBasketServiceShould {
 
     @Test
     void create_a_new_basket_for_item() {
-        ShoppingBasketProvider shoppingBasketProvider = Mockito.mock(ShoppingBasketProvider.class);
-        ShoppingBasket shoppingBasket = Mockito.mock(ShoppingBasket.class);
-        ItemProvider itemProvider = Mockito.mock(ItemProvider.class);
+        ShoppingBasketProvider shoppingBasketProvider = mock(ShoppingBasketProvider.class);
+        ShoppingBasket shoppingBasket = mock(ShoppingBasket.class);
+        ItemProvider itemProvider = mock(ItemProvider.class);
+        Item item = mock(Item.class);
+
         SimpleShoppingBasketService service = new SimpleShoppingBasketService(shoppingBasketProvider, itemProvider);
         String userId = "1";
         int quantity = 1;
         Product product = createTestProduct();
 
         when(shoppingBasketProvider.getOrCreate(userId)).thenReturn(shoppingBasket);
-        when(itemProvider.get(product.getId())).thenReturn(item);
+        ;
+        when(itemProvider.create(product.getId(), quantity)).thenReturn(item);
 
         service.addItem(userId, product.getId(), quantity);
 
         verify(shoppingBasketProvider).getOrCreate(userId);
-        verify(itemProvider).get(product.getId());
+        verify(itemProvider).create(product.getId(), quantity);
         verify(shoppingBasket).addItem(item);
     }
 
 
     @Test
     void use_the_same_basket_for_each_user() {
-        ShoppingBasketProvider shoppingBasketProvider = Mockito.mock(ShoppingBasketProvider.class);
-        ItemProvider itemProvider = Mockito.mock(ItemProvider.class);
+        ShoppingBasketProvider shoppingBasketProvider = mock(ShoppingBasketProvider.class);
+        ItemProvider itemProvider = mock(ItemProvider.class);
         SimpleShoppingBasketService service = new SimpleShoppingBasketService(shoppingBasketProvider, itemProvider);
-        ShoppingBasket shoppingBasket = Mockito.mock(ShoppingBasket.class);
+        ShoppingBasket shoppingBasket = mock(ShoppingBasket.class);
         String userId = "1";
 
         when(shoppingBasketProvider.getOrCreate(userId)).thenReturn(shoppingBasket);
